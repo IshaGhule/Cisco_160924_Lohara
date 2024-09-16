@@ -1,3 +1,4 @@
+
 salaries = []
 '''
 1. add salary 
