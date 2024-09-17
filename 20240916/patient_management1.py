@@ -11,18 +11,18 @@ class Patient:
     def __repr__(self): # function used for repetition of string.
         return self.__str__()
     
-#patients[]
+# 2. patients[]
 
 patients = []
         
-# 2. patient_add(id, name)
+# 3. patient_add(id, name)
 
 def patient_add(id, name):
     global patients
     patient = Patient(id, name)
     patients.append(patient)
 
-# 3. patient_remove(id)
+# 4. patient_remove(id)
 
 def patient_remove(id):
     global patients
@@ -35,14 +35,14 @@ def patient_remove(id):
             return 
     print(f'No such id {id}')
 
-# 4. patient_display()
+# 5. patient_display()
 
 def patient_display():
     global patients
     for patient in patients:
         print(patient)
 
-# patient_update()
+# 6.patient_update()
 
 def patient_update(id, new_name):
     global patients
@@ -53,7 +53,7 @@ def patient_update(id, new_name):
             return
     print(f'No such id {id}')   
 
-# 5. Menu 
+# 7. Menu 
 
 def menu():
     choice = int(input('''1- Add Patient
@@ -81,7 +81,7 @@ Your choice: '''))
         print('Invalid menu')
     return choice
 
-# 6. menus
+# 8. menus
 
 def menus():
     choice = menu()
@@ -89,7 +89,7 @@ def menus():
       choice = menu()
     print('Thank You for using the application.')
 
-# 7. driver program
+# 9. driver program
 
 menus()
 
