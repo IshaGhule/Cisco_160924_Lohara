@@ -42,13 +42,25 @@ def patient_display():
     for patient in patients:
         print(patient)
 
+# patient_update()
+
+def patient_update(id, new_name):
+    global patients
+    for patient in patients:
+        if patient.id == id:
+            patient.name = new_name
+            print(f'Patient {id} updated successfully')
+            return
+    print(f'No such id {id}')   
+
 # 5. Menu 
 
 def menu():
-    choice = int(input('''1-Add Patient
-2-Remove Patient by id
-3-Display all Patients
-4-End
+    choice = int(input('''1- Add Patient
+2- Remove Patient by id
+3- Display all Patients
+4- Update Patient name
+5- End
 Your choice: '''))
     if choice == 1:
         id = input('Enter patient id: ')
@@ -60,6 +72,10 @@ Your choice: '''))
     elif choice == 3:
         patient_display()
     elif choice == 4:
+        id = input('Enter patient id: ')
+        new_name = input('Enter new patient name: ')
+        patient_update(id, new_name)
+    elif choice == 5:
         pass
     else:
         print('Invalid menu')
@@ -69,9 +85,9 @@ Your choice: '''))
 
 def menus():
     choice = menu()
-    while choice != 4:
+    while choice != 5:
       choice = menu()
-    print('Thank You for using the app')
+    print('Thank You for using the application.')
 
 # 7. driver program
 
