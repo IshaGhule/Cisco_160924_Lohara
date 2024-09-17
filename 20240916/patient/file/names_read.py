@@ -1,9 +1,9 @@
-#using 'with' clause
+# using 'with' clause
 # with open('names.txt','r') as names_db:
 #     all_names = names_db.read()
 #     print(all_names)
 
-#without using 'with' clause
+# without using 'with' clause
 # names_db = open('names.txt','r')
 # all_names = names_db.read()
 # print(all_names)
