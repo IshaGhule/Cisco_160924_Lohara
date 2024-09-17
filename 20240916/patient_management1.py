@@ -1,4 +1,4 @@
-# approach for assignment:
+# approach for assignment: as per list
 
 # 1. class patient (id, name)
 
