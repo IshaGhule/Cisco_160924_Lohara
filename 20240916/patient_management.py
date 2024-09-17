@@ -3,13 +3,13 @@ patients = []
 def patient_add(name):
     global patients
     patients.append(name)
-    print(f"Patient '{name}' added.")
+    print(f"Patient added.")
 
 def patient_delete(name):
     global patients
     try:
         patients.remove(name)
-        print(f"Patient '{name}' removed.")
+        print(f"Patient removed.")
     except ValueError:
         print('No such patient.')
 
