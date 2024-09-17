@@ -1,0 +1,1 @@
+List: ['banana', 'apple', 'guava']Tuple: ['banana', 'apple', 'guava']

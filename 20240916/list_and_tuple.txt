@@ -1,0 +1,2 @@
+List: ['& C:/Users/ighule/AppData/Local/Microsoft/WindowsApps/python3.12.exe c:/Mywork/Source/Cisco_160924_Lohara/20240916/qtn/fruits.py']
+Tuple: ('& C:/Users/ighule/AppData/Local/Microsoft/WindowsApps/python3.12.exe c:/Mywork/Source/Cisco_160924_Lohara/20240916/qtn/fruits.py',)
