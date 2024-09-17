@@ -22,6 +22,7 @@ def patient_list():
     else:
         print("No patients in the list.")
 
+
 def menu():
     choice = int(input('''1-Add Patient
 2-Remove Patient
@@ -42,10 +43,12 @@ Your choice: '''))
     
     return choice
 
+
 def menus():
     choice = menu()
     while choice != 4:
         choice = menu()
     print('Application Ended')
+
 
 menus()
