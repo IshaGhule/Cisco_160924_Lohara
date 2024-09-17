@@ -1,28 +1,30 @@
 
-from patient_service import patient_add,patient_display,patient_remove,patient_update
+from patient_service import patient_add,patient_display,patient_display_byid,patient_remove,patient_update
 from patient_service import patient_update,patient_remove
 def menu():
     choice = int(input('''1- Add Patient
-2- Remove Patient by id
+2- Delete Patient by id
 3- Display all Patients
-4- Update Patient name
-5- End
+4- Read by patient id
+5- Update Patient by id
+6- End
 Your choice: '''))
     if choice == 1:
-        id = input('Enter patient id: ')
+        id = int(input('Enter patient id: '))
         name = input('Enter patient name: ')
         patient_add(id, name)
     elif choice == 2:
-        id = input('Enter patient id: ')
+        id = int(input('Enter patient id: '))
         patient_remove(id)
     elif choice == 3:
-        id = int(input('Enter patient id: '))
-        patient_display(id)
+        patient_display()
     elif choice == 4:
-        id = input('Enter patient id: ')
-        new_name = input('Enter new patient name: ')
-        patient_update(id, new_name)
+        id = int(input('Enter patient id:'))
+        patient_display_byid(id)
     elif choice == 5:
+        id = int(input('Enter patient id: '))
+        patient_update(id)
+    elif choice == 6:
         pass
     else:
         print('Invalid menu')
@@ -32,7 +34,7 @@ Your choice: '''))
 
 def menus():
     choice = menu()
-    while choice != 5:
+    while choice != 6:
       choice = menu()
     print('Thank You for using the application.')
 

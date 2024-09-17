@@ -1,12 +1,11 @@
 from Patient import Patient
-patients = {} #dict()
-        
+patients = {} #dict()   
 # 3. patient_add(id, name)
 
 def patient_add(id, name):
     global patients
     patient = Patient(id, name)
-    patients[patients.id] = patient #for dict
+    patients[patient.id] = patient #for dict
     #patients.append(patient) for list
     print('Patient created successfully')
 
@@ -34,7 +33,7 @@ def patient_display():
 
 # 6. patient_displaybyid(id)
 
-def patient_displaybyid(id):
+def patient_display_byid(id):
     global patients
     patient = patients.get(id)
     if patient == None:
@@ -44,7 +43,7 @@ def patient_displaybyid(id):
 
 # 7. patient_update()
 
-def patient_update(id, new_name):
+def patient_update(id):
     global patients
     patient = patients.get(id)
     if patient == None:
