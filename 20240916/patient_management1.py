@@ -21,6 +21,7 @@ def patient_add(id, name):
     global patients
     patient = Patient(id, name)
     patients.append(patient)
+    print('Patient created successfully')
 
 # 4. patient_remove(id)
 
@@ -37,10 +38,14 @@ def patient_remove(id):
 
 # 5. patient_display()
 
-def patient_display():
+def patient_display(id):
     global patients
     for patient in patients:
-        print(patient)
+        #print(patient)
+        if patient.id == id:
+          print(patient)
+          return
+    print('Invalid id')    
 
 # 6.patient_update()
 
@@ -70,7 +75,8 @@ Your choice: '''))
         id = input('Enter patient id: ')
         patient_remove(id)
     elif choice == 3:
-        patient_display()
+        id = input('Enter patient id: ')
+        patient_display(id)
     elif choice == 4:
         id = input('Enter patient id: ')
         new_name = input('Enter new patient name: ')
