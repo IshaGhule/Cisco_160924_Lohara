@@ -1,0 +1,4 @@
+list:['John','Emily','Kate','Emily']
+set {'John','Emily','Kate'}
+Frozenset: ({John,Emily,Kate})
+Dictionary of name lengths: {'Kate': 4, 'Emily': 5, 'John': 4}
