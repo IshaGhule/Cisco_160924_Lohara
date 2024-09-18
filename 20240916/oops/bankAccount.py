@@ -27,3 +27,5 @@ isha_ac.withdraw(50000)
 print(isha_ac)
 print(isha_ac.__dict__)
 #print(isha_ac.__balance) # Error,it is private function
+isha_ac.withdraw(200000)
+print(isha_ac)
