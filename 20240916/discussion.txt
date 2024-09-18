@@ -1,1 +1,18 @@
 # Cisco_160924_Lohara
+Say Hi to Python programming
+Basics of GIT and GITHUB
+Basics of Python rogramming
+How to work with file as database
+
+json format
+
+functions
+oops
+expecting handling
+    module
+    package
+standard modules
+tools
+
+functions
+        
