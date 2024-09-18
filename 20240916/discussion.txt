@@ -15,4 +15,8 @@ standard modules
 tools
 
 functions
-        
+        to define functions
+            to define args
+            to return value
+        keywords arg
+
