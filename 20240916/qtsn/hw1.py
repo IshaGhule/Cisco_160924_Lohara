@@ -24,4 +24,3 @@ patients_list = ['Alice', 'Bob', 'Charlie']
 add_patient_list(patients_list, 'David')
 remove_patient_list(patients_list, 'Alice')
 write_list_to_json(patients_list, 'patients_list.json')
-
