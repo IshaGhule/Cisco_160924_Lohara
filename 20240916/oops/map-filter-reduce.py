@@ -13,5 +13,10 @@ nums_sum = reduce(lambda s,num: s+ num, nums,0) #101
 nums_prod = reduce(lambda p,num: p * num, nums,1) #246000
 print(nums_sum, nums_prod)
 
-#nums_min = reduce(lambda p,num: p * num, nums,1) #246000
-#nums_max = reduce(lambda p,num: p * num, nums,1) #246000
+import sys
+nums_min = reduce(lambda m,num: min(m,num), nums,sys.maxsize) #10
+nums_max = reduce(lambda m,num: max(m,num), nums,-sys.maxsize) #41
+print(nums_min,nums_max)
+nums_min = reduce(min, nums) #10
+nums_max = reduce(max, nums) #41
+print(nums_min,nums_max)
