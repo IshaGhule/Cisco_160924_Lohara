@@ -64,7 +64,7 @@ class Patient:
 
     def send_email_alert(self, subject, body):
         if self.email:
-            email_alerts = EmailAlerts("smtp.gmail.com", 465, os.getenv("ishaghule@gmail.com"), os.getenv("eonn mgdi jhhk bbpd"))
+            email_alerts = EmailAlerts("smtp.gmail.com", 465, os.getenv("ishaghule@gmail.com"), os.getenv("qmph laza mshq ibgc"))
             email_alerts.send_email(self.email, subject, body)
             product_info = email_alerts.find_product_in_email(body)
             email_alerts.write_product_to_json(product_info)
