@@ -10,8 +10,8 @@ class EmailAlerts:
     def __init__(self, smtp_server, port):
         self.smtp_server = smtp_server
         self.port = port
-        self.username = os.getenv("ishaghule@gmail.com")
-        self.password = os.getenv("tiwu rkrn dwbe vedp")
+        self.username = "ishaghule@gmail.com"
+        self.password = "tiwu rkrn dwbe vedp"
 
     def send_email(self, to_email, subject, body):
         msg = MIMEText(body)
