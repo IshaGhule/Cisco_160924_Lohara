@@ -1,20 +1,17 @@
-import paramiko
 import smtplib
 from email.mime.text import MIMEText
-import sqlite3
+import os
+import json
 import requests
 from bs4 import BeautifulSoup
-import concurrent.futures
-import json
-import os
 
 # Email Alerts
 class EmailAlerts:
-    def __init__(self, smtp_server, port, username, password):
+    def __init__(self, smtp_server, port):
         self.smtp_server = smtp_server
         self.port = port
-        self.username = username
-        self.password = password
+        self.username = os.getenv("ishaghule@gmail.com")
+        self.password = os.getenv("tiwu rkrn dwbe vedp")
 
     def send_email(self, to_email, subject, body):
         msg = MIMEText(body)
@@ -23,8 +20,10 @@ class EmailAlerts:
         msg['To'] = to_email
 
         try:
+            print(f"Connecting to SMTP server: {self.smtp_server} on port {self.port}")
             server = smtplib.SMTP_SSL(self.smtp_server, self.port)
             server.login(self.username, self.password)
+            print(f"Logged in as {self.username}")
             server.sendmail(self.username, to_email, msg.as_string())
             server.quit()
             print(f"Email sent to {to_email}")
@@ -32,8 +31,6 @@ class EmailAlerts:
             print(f"Failed to send email: {e}")
 
     def find_product_in_email(self, email_body):
-        # Assuming the product information is in a specific format in the email body
-        # For example: "Product: <product_name>"
         product_info = {}
         lines = email_body.split('\n')
         for line in lines:
@@ -64,7 +61,7 @@ class Patient:
 
     def send_email_alert(self, subject, body):
         if self.email:
-            email_alerts = EmailAlerts("smtp.gmail.com", 465, os.getenv("ishaghule@gmail.com"), os.getenv("qmph laza mshq ibgc"))
+            email_alerts = EmailAlerts("smtp.gmail.com", 465)
             email_alerts.send_email(self.email, subject, body)
             product_info = email_alerts.find_product_in_email(body)
             email_alerts.write_product_to_json(product_info)
@@ -162,7 +159,7 @@ def main():
     router.receive_data()
 
     # Web Scraping
-    scraper = WebScraper("https://example.com")
+    scraper = WebScraper("https://www.apollopharmacy.in/")
     html_content = scraper.fetch_data()
     if html_content:
         web_data = scraper.parse_data(html_content)
