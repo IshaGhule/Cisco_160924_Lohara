@@ -5,6 +5,8 @@ import sqlite3
 import requests
 from bs4 import BeautifulSoup
 import concurrent.futures
+import json
+import os
 
 # Email Alerts
 class EmailAlerts:
@@ -20,10 +22,32 @@ class EmailAlerts:
         msg['From'] = self.username
         msg['To'] = to_email
 
-        server = smtplib.SMTP_SSL(self.smtp_server, self.port)
-        server.login(self.username, self.password)
-        server.sendmail(self.username, to_email, msg.as_string())
-        server.quit()
+        try:
+            server = smtplib.SMTP_SSL(self.smtp_server, self.port)
+            server.login(self.username, self.password)
+            server.sendmail(self.username, to_email, msg.as_string())
+            server.quit()
+            print(f"Email sent to {to_email}")
+        except Exception as e:
+            print(f"Failed to send email: {e}")
+
+    def find_product_in_email(self, email_body):
+        # Assuming the product information is in a specific format in the email body
+        # For example: "Product: <product_name>"
+        product_info = {}
+        lines = email_body.split('\n')
+        for line in lines:
+            if "Product:" in line:
+                product_info['product'] = line.split("Product:")[1].strip()
+        return product_info
+
+    def write_product_to_json(self, product_info, filename='product_info.json'):
+        try:
+            with open(filename, 'w') as json_file:
+                json.dump(product_info, json_file)
+            print(f"Product information written to {filename}")
+        except Exception as e:
+            print(f"Failed to write product information to JSON file: {e}")
 
 # Patient Management
 class Patient:
@@ -40,8 +64,10 @@ class Patient:
 
     def send_email_alert(self, subject, body):
         if self.email:
-            email_alerts = EmailAlerts("smtp.gmail.com", 465, "ishaghule@gmail.com", "kaqe akej rpvx ihjy")
+            email_alerts = EmailAlerts("smtp.gmail.com", 465, os.getenv("ishaghule@gmail.com"), os.getenv("eonn mgdi jhhk bbpd"))
             email_alerts.send_email(self.email, subject, body)
+            product_info = email_alerts.find_product_in_email(body)
+            email_alerts.write_product_to_json(product_info)
 
     def display_info(self):
         print(f"Patient ID: {self.patient_id}")
@@ -81,6 +107,34 @@ class NetworkDevice:
     def receive_data(self):
         print(f"Receiving data from {self.device_type}")
 
+# Web Scraper
+class WebScraper:
+    def __init__(self, url):
+        self.url = url
+
+    def fetch_data(self):
+        try:
+            response = requests.get(self.url)
+            response.raise_for_status()
+            return response.text
+        except requests.RequestException as e:
+            print(f"Failed to fetch data from {self.url}: {e}")
+            return None
+
+    def parse_data(self, html_content):
+        soup = BeautifulSoup(html_content, 'html.parser')
+        # Example: Extracting all paragraph texts
+        data = [p.text for p in soup.find_all('p')]
+        return data
+
+    def write_data_to_json(self, data, filename='web_data.json'):
+        try:
+            with open(filename, 'w') as json_file:
+                json.dump(data, json_file)
+            print(f"Web data written to {filename}")
+        except Exception as e:
+            print(f"Failed to write web data to JSON file: {e}")
+
 def main():
     # Patient Management
     pms = PatientManagementSystem()
@@ -93,7 +147,7 @@ def main():
     patient = pms.get_patient("001")
     if patient:
         patient.update_medical_history("Diagnosed with hypertension.")
-        patient.send_email_alert("Medical Alert", "Your recent test results are available.")
+        patient.send_email_alert("Medical Alert", "Your recent test results are available.\nProduct: Blood Pressure Monitor")
         patient.display_info()
 
     patient2 = pms.get_patient("002")
@@ -106,6 +160,13 @@ def main():
     router.communicate()
     router.send_data("Hello, Router!")
     router.receive_data()
+
+    # Web Scraping
+    scraper = WebScraper("https://example.com")
+    html_content = scraper.fetch_data()
+    if html_content:
+        web_data = scraper.parse_data(html_content)
+        scraper.write_data_to_json(web_data)
 
 if __name__ == "__main__":
     main()
