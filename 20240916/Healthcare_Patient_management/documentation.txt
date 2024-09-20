@@ -8,6 +8,7 @@ Files
 app.py: Main Flask application file.
 db.py: SQLite database integration.
 app.py
+db.py
 Imports
 Flask, render_template, request, redirect, url_for from flask: Flask framework components for creating the web application.
 Global Variables
@@ -42,6 +43,7 @@ python app.py
 db.py
 Imports
 sqlite3: SQLite database module.
+
 Database Class
 Handles SQLite database operations.
 
@@ -58,7 +60,6 @@ close(self): Closes the database connection.
 
 Usage:
 To use the database class, you can create an instance of the Database class and call its methods to perform database operations. For example:
-
 
 db = Database()
 
